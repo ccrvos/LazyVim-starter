@@ -17,3 +17,16 @@ keymap("v", "j", "h", opts)
 keymap("o", "ö", "l", opts)
 keymap("o", "l", "j", opts)
 keymap("o", "j", "h", opts)
+
+-- Execute Python file
+keymap("n", "<leader>rp", function()
+  vim.cmd("w") -- Save the file
+  vim.cmd("split") -- Split the window
+  vim.cmd("terminal python3 " .. vim.fn.expand("%")) -- Run in terminal
+end, { desc = "Run Python file in split" })
+
+-- Insert empty Python code chunk
+keymap({ "n", "i" }, "<m-i>", "<esc>i```{python}<cr>```<esc>0", { desc = "[i]nsert python code chunk" })
+
+-- Split and open ipython3 terminal
+keymap("n", "<leader>ri", ":vsplit term://ipython3<cr>", { desc = "split and open ipython3 terminal" })
